@@ -1,32 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import monthInfo from './monthInfo';
+import generateDays from './generateDays'
 
 const Calendar = (props) => {
-    const generateDays = () => {
-        const output = [];
-        let calEntry = 1;
-        let i = 1;
-        let j = 0;
-        let startDay = new Date(`${props.month} 1, ${props.year}`).getDay();     
-        while (i <= monthInfo[props.month][1]) {
-            let week = [];
-            while (j <= 6 && i <= monthInfo[props.month][1]) {
-                if (calEntry <= startDay) week.push(<td>{'n'}</td>)
-                else {
-                    week.push(<td>{i}</td>)
-                    i++;
-                };
-                j++;
-                calEntry++;
-            }
-            j = 0;
-            output.push(<tr>{week}</tr>)
-        };
-        return output;
-    };
-    
-    const daysOfMonth = generateDays();
-
+    // useMemo for generateDays, don't need to load that on each re-render
     return (
         <div className='calendar'>
             <div className='calendarHead'>
@@ -41,7 +18,7 @@ const Calendar = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {daysOfMonth}
+                    {generateDays(props.month, props.year)}
                 </tbody>
             </table>
         </div>
