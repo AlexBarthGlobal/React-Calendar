@@ -30,6 +30,7 @@ const CalendarView = () => {
     const selectDate = (evt, side) => {
         console.log(evt.target.textContent);
         console.log(side)
+        if (!startDate) setStartDate = evt.target.textContent;
     };
     
     const getWindowDimensions = () => {
