@@ -8,6 +8,20 @@ const CalendarView = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
+    const selectDate = (evt, side) => {
+        const selectedDay = evt.target.textContent;
+        const selectedMonth = !side || side === 'L' ? month : sanitizeMonth(month+1);
+        const selectedYear = !side || side === 'L' ? year : month === 12 ? year + 1 : year;
+        const selectedDate = new Date(`${selectedMonth} ${selectedDay}, ${selectedYear}`).getTime();
+        if (!startDate) {
+            setStartDate(selectedDate);
+            evt.target.className = 'selectedDate';
+        } else if (startDate === selectedDate) {
+            setStartDate(null);
+            evt.target.className = 'null';
+        }
+    };
+
     const incrementMonth = () => {
         if (month === 12) {
             setMonth(1);
@@ -25,12 +39,6 @@ const CalendarView = () => {
     const sanitizeMonth = (month) => {
         if (month > 12) return 1
         else return month;
-    };
-
-    const selectDate = (evt, side) => {
-        console.log(evt.target.textContent);
-        console.log(side)
-        if (!startDate) setStartDate = evt.target.textContent;
     };
     
     const getWindowDimensions = () => {
@@ -59,7 +67,7 @@ const CalendarView = () => {
                 </div> 
                 : 
                 <div id='calendarContainerInner'>
-                    <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
+                        <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
         </>

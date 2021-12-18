@@ -76,6 +76,15 @@ th {
 
 td {
   text-align: center;
+  height: 26px;
+  padding-bottom: 2px;
+}
+
+.selectedDate {
+  border: 1px black solid;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
 }
 
 .changeMonth {
