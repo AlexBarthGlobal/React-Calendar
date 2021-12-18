@@ -1,13 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
+  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  /* height: 100vh; */
+  min-height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+#calendarContainer {
+  border: black 1px solid;
+  width: 808px;
+  height: 518px;
+  margin-top: 130px;
+  border-radius: 2.7rem;
+  display: flex;
+  justify-content: center;
+}
+
+#calendarContainerInner {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 20px;
+}
+
+.calendar {
+  border: 1px solid rgba(0, 0, 0, 0.575);
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendarHead {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 4px 10px;
+}
+
+.changeMonth {
+  min-width:24px;
+}
+
+.calHeadSpace {
+  min-width:24px;
+}
+
+@media only screen and (max-width: 836px) {
+  #calendarContainer {
+    border: black 1px solid;
+    width: 418px;
+    height: 518px;
+    margin-top: 130px;
+    border-radius: 2.7rem;
+    display: flex;
+    justify-content: center;
+  }
 }
