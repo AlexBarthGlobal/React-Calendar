@@ -47,7 +47,7 @@ code {
 
 .calendar {
   border: 1px solid rgba(0, 0, 0, 0.575);
-  width: 290px;
+  width: 326px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,6 +58,23 @@ code {
   width: 100%;
   justify-content: space-between;
   padding: 4px 10px;
+}
+
+.calendarTable {
+  width: 100%;
+  padding: 9px;
+}
+
+.calendarTable {
+  width: 100%;
+}
+
+th {
+  width: 28px;
+}
+
+td {
+  text-align: center;
 }
 
 .changeMonth {
