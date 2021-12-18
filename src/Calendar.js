@@ -17,7 +17,7 @@ const Calendar = (props) => {
                         <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody onClick={(evt) => props.selectDate(evt, props.side)}>
                     {generateDays(props.month, props.year)}
                 </tbody>
             </table>

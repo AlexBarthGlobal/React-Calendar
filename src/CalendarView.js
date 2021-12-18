@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import Calendar from './Calendar'
 
 const CalendarView = () => {
-    const [month, setMonth] = useState(new Date().getMonth()+1);
-    const [year, setYear] = useState(new Date().getFullYear());
+    const date = new Date();
+    const [month, setMonth] = useState(date.getMonth()+1);
+    const [year, setYear] = useState(date.getFullYear());
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
 
     const incrementMonth = () => {
         if (month === 12) {
@@ -23,6 +26,11 @@ const CalendarView = () => {
         if (month > 12) return 1
         else return month;
     };
+
+    const selectDate = (evt, side) => {
+        console.log(evt.target.textContent);
+        console.log(side)
+    };
     
     const getWindowDimensions = () => {
         const {innerWidth: width, innerHeight: height} = window;
@@ -39,25 +47,22 @@ const CalendarView = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const rightYear = month === 12 ? year+1 : year;
-
     return (
         // use UseContext so I don't pass in the same props over and over again
         <>
             {
                 windowDimensions.width > 836 ? 
                 <div id='calendarContainerInner'>
-                    <Calendar month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
-                    <Calendar month={sanitizeMonth(month+1)} year={rightYear} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
+                    <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
+                    <Calendar selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
                 </div> 
                 : 
                 <div id='calendarContainerInner'>
-                    <Calendar month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
+                    <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
         </>
-    )
-    
+    )  
 }
 
 export default CalendarView;
