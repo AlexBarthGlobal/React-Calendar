@@ -63,6 +63,7 @@ code {
 .calendarTable {
   width: 100%;
   padding: 9px;
+  border-spacing: 15px;
 }
 
 .calendarTable {
