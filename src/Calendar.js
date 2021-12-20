@@ -20,7 +20,7 @@ const Calendar = (props) => {
                     </tr>
                 </thead>
                 <tbody onClick={(evt) => props.selectDate(evt, props.side)}>
-                    {generateDays(props.month, props.year, props.startDate, props.endDate, props.todayTime, props.calendarMax, props.setHoverDate, props.hoverDate)}
+                    {generateDays(props.month, props.year, props.startDate, props.endDate, props.todayTime, props.calendarMax, props.setTheHoverDate, props.hoverDate)}
                 </tbody>
             </table>
         </div>
