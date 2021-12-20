@@ -2,7 +2,7 @@ import monthInfo from './monthInfo';
 import getDate from './getDate'
 import setClass from './setClass'
 
-const generateDays = (month, year, startDate, endDate, todayTime, calendarMax) => {
+const generateDays = (month, year, startDate, endDate, todayTime, calendarMax, setHoverDate, hoverDate) => {
     const output = [];
     let calEntry = 1, i = 1, j = 0, weekCount = 0;
     let startDay = new Date(`${month} 1, ${year}`).getDay();
@@ -12,11 +12,11 @@ const generateDays = (month, year, startDate, endDate, todayTime, calendarMax) =
             if (calEntry <= startDay) week.push(<td className='inactive' key={calEntry}></td>)
             else {
                 const currDate = getDate(i, month, year);
-                const cls = setClass(currDate, startDate, endDate, todayTime, calendarMax);
+                const cls = setClass(currDate, startDate, endDate, todayTime, calendarMax, hoverDate);
                 let fade = null;
                 if (i === 1 && (cls[0] === 'betweenDate' || cls[0] === 'selectedDate' && endDate === currDate)) fade = <div className='fadeStart'></div>
                 else if (i === monthInfo[month][1] && (cls[0] === 'betweenDate' || cls[0] === 'selectedDate' && startDate === currDate && endDate)) fade = <div className='fadeEnd'></div>
-                week.push(<td className={cls[1] ? cls[1] : ''} key={calEntry}>{fade}<div className={cls[0]}>{i}</div></td>)
+                week.push(<td onMouseEnter={() => setHoverDate(currDate)} className={cls[1] ? cls[1] : ''} key={calEntry}>{fade}<div className={cls[0]}>{i}</div></td>)
                 i++;
             };
             j++;
