@@ -6,7 +6,9 @@ const CalendarView = () => {
     const [month, setMonth] = useState(date.getMonth()+1);
     const [year, setYear] = useState(date.getFullYear());
     const [startDate, setStartDate] = useState(null);
+    const [startRef, setStartRef] = useState(null);
     const [endDate, setEndDate] = useState(null);
+    const [endRef, setEndRef] = useState(null);
 
     const selectDate = (evt, side) => {
         const selectedDay = evt.target.textContent;
@@ -15,11 +17,26 @@ const CalendarView = () => {
         const selectedDate = new Date(`${selectedMonth} ${selectedDay}, ${selectedYear}`).getTime();
         if (!startDate) {
             setStartDate(selectedDate);
+            setStartRef(evt.target);
             evt.target.className = 'selectedDate';
         } else if (startDate === selectedDate) {
+            startRef.className = 'null';
+            if (endRef) endRef.className = 'null';
             setStartDate(null);
-            evt.target.className = 'null';
-        }
+            setStartRef(null);
+            setEndDate(null);
+            setEndRef(null);
+        } else if (selectedDate < startDate) {
+            setStartDate(selectedDate);
+            startRef.className = 'null';
+            setStartRef(evt.target);
+            evt.target.className = 'selectedDate';
+        } else if (startDate < selectedDate) {
+            if (endRef) endRef.className = 'null';
+            setEndDate(selectedDate);
+            setEndRef(evt.target);
+            evt.target.className = 'selectedDate';
+        };
     };
 
     const incrementMonth = () => {
