@@ -11,14 +11,14 @@ const Calendar = (props) => {
                 <div>{`${monthInfo[props.month][0]} ${props.year}`}</div>
                 {!props.side || props.side === 'R' ? <button className='changeMonth' onClick={() => props.incrementMonth()}>{'->'}</button> : <div className='calHeadSpace'></div>}
             </div>
-            <table>
+            <table className='calendarTable'>
                 <thead>
                     <tr>
                         <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {generateDays(props.month, props.year)}
+                <tbody onClick={(evt) => props.selectDate(evt, props.side)}>
+                    {generateDays(props.month, props.year, props.startDate, props.endDate, props.todayTime, props.calendarMax)}
                 </tbody>
             </table>
         </div>
