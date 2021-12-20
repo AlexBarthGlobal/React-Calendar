@@ -13,7 +13,7 @@ const Calendar = (props) => {
                 <div>{`${monthInfo[props.month][0]} ${props.year}`}</div>
                 {!props.side || props.side === 'R' ? <ArrowRight className='changeMonth' onClick={() => props.incrementMonth()} /> : <div className='calHeadSpace'></div>}
             </div>
-            <table onMouseLeave={() => props.setHoverDate(null)} className='calendarTable'>
+            <table onMouseLeave={(evt) => props.setTheHoverDate(evt, null)} className='calendarTable'>
                 <thead>
                     <tr>
                         <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
