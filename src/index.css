@@ -21,6 +21,12 @@ code {
     monospace;
 }
 
+svg {
+  cursor: pointer;
+}
+
+
+
 .App {
   display: flex;
   justify-content: center;
@@ -30,7 +36,8 @@ code {
 #calendarContainer {
   border: black 1px solid;
   width: 808px;
-  height: 518px;
+  /* height: 518px; */
+  height: 380px;
   margin-top: 130px;
   border-radius: 2.7rem;
   display: flex;
@@ -58,6 +65,7 @@ code {
   width: 100%;
   justify-content: space-between;
   padding: 4px 10px;
+  user-select: none;
 }
 
 .calendarTable {
@@ -73,11 +81,7 @@ code {
 
 th {
   width: 28px;
-}
-
-.inactive {
-  cursor: auto !important;
-  color: #a4a3a369;
+  user-select: none;
 }
 
 td {
@@ -90,6 +94,11 @@ td {
   cursor: pointer;
   user-select: none;
   position: relative;
+}
+
+.inactive {
+  cursor: auto !important;
+  color: #a4a3a369;
 }
 
 td > div {
@@ -146,7 +155,7 @@ td > div {
   #calendarContainer {
     border: black 1px solid;
     width: 418px;
-    height: 518px;
+    height: 380px;
     margin-top: 130px;
     border-radius: 2.7rem;
     display: flex;
