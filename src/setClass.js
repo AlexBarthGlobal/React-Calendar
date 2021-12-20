@@ -1,10 +1,11 @@
 const setClass = (currDate, startDate, endDate, todayTime, calendarMax, hoverDate) => {
     if (currDate < todayTime || currDate > calendarMax) return ['inactive']
     if (currDate === startDate) {
-        if (!endDate) return ['selectedDate'];
+        if (!endDate && (!hoverDate || hoverDate === startDate)) return ['selectedDate'];
+        else if (hoverDate && hoverDate < startDate) return ['selectedDate']
         else return ['selectedDate', 'startDateBackground']
     } else if (currDate === endDate || startDate && !endDate && currDate === hoverDate) {
-        if (hoverDate > startDate) return ['selectedDate', 'endDateBackground']
+        if (hoverDate > startDate || currDate === endDate) return ['selectedDate', 'endDateBackground']
         else return ['selectedDate']
     } else if (startDate && hoverDate && startDate < currDate && currDate < hoverDate) {
         if (endDate && currDate > endDate) {
