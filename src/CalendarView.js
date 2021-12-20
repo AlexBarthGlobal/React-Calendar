@@ -4,11 +4,19 @@ import getDate from './getDate'
 
 const CalendarView = () => {
     const todayDate = new Date();
+    const todayDay = todayDate.getDate();
+    const todayMonth = todayDate.getMonth()+1;
+    const todayYear = todayDate.getFullYear();
     const [month, setMonth] = useState(todayDate.getMonth()+1);
     const [year, setYear] = useState(todayDate.getFullYear());
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const todayTime = new Date(`${month} ${todayDate.getDate()}, ${year}`).getTime();
+    const getCalendarMax = () => {
+        if (todayMonth + 6 > 11) return getDate(todayDay, (todayMonth+6)-12, todayYear+1)
+        else return getDate(todayDay, todayMonth, todayYear);
+    }
+    const calendarMax = getCalendarMax();
+    const todayTime = getDate(todayDay, todayMonth, todayYear);
 
     const selectDate = (evt, side) => {
         if (evt.target.className === 'inactive') return;
@@ -69,12 +77,12 @@ const CalendarView = () => {
             {
                 windowDimensions.width > 836 ? 
                 <div id='calendarContainerInner'>
-                    <Calendar todayTime={todayTime} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
-                    <Calendar todayTime={todayTime} startDate={startDate} endDate={endDate} selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
+                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
+                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
                 </div> 
                 : 
                 <div id='calendarContainerInner'>
-                    <Calendar todayTime={todayTime} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
+                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
         </>

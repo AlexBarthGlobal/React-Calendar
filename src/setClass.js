@@ -1,5 +1,5 @@
-const setClass = (currDate, startDate, endDate, todayTime) => {
-    if (currDate < todayTime) return ['inactive']
+const setClass = (currDate, startDate, endDate, todayTime, calendarMax) => {
+    if (currDate < todayTime || currDate > calendarMax) return ['inactive']
     if (currDate === startDate) {
         if (!endDate) return ['selectedDate'];
         else return ['selectedDate', 'startDateBackground']
