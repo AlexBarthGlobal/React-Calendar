@@ -17,6 +17,7 @@ const CalendarView = () => {
     }
     const calendarMax = getCalendarMax();
     const todayTime = getDate(todayDay, todayMonth, todayYear);
+    const [hoverDate, setHoverDate] = useState(null);
 
     const selectDate = (evt, side) => {
         if (evt.target.className === 'inactive') return;
