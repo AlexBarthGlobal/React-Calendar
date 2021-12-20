@@ -1,6 +1,8 @@
 import monthInfo from './monthInfo';
+import getDate from './getDate'
+import setClass from './setClass'
 
-const generateDays = (month, year) => {
+const generateDays = (month, year, startDate, endDate) => {
     const output = [];
     let calEntry = 1, i = 1, j = 0, weekCount = 0;
     let startDay = new Date(`${month} 1, ${year}`).getDay();
@@ -9,7 +11,8 @@ const generateDays = (month, year) => {
         while (j <= 6 && i <= monthInfo[month][1]) {
             if (calEntry <= startDay) week.push(<td key={calEntry}></td>)
             else {
-                week.push(<td key={calEntry}>{i}</td>)
+                const cls = setClass(getDate(i, month, year), startDate, endDate);
+                week.push(<td className={cls} key={calEntry}>{i}</td>)
                 i++;
             };
             j++;

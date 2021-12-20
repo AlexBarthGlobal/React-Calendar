@@ -68,6 +68,7 @@ code {
 
 .calendarTable {
   width: 100%;
+  border-spacing: 0;
 }
 
 th {
@@ -76,7 +77,10 @@ th {
 
 td {
   text-align: center;
-  height: 26px;
+  height: 44px;
+  width: 44px;
+  max-width: 44px;
+  max-height: 44px;
   padding-bottom: 2px;
 }
 
@@ -85,6 +89,11 @@ td {
   border-radius: 50%;
   background-color: black;
   color: white;
+}
+
+.betweenDate {
+  background-color: rgba(0, 0, 0, 0.199);
+  border-top: 1.3px white solid;
 }
 
 .changeMonth {

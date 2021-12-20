@@ -1,41 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import Calendar from './Calendar'
+import getDate from './getDate'
 
 const CalendarView = () => {
     const date = new Date();
     const [month, setMonth] = useState(date.getMonth()+1);
     const [year, setYear] = useState(date.getFullYear());
     const [startDate, setStartDate] = useState(null);
-    const [startRef, setStartRef] = useState(null);
     const [endDate, setEndDate] = useState(null);
-    const [endRef, setEndRef] = useState(null);
 
     const selectDate = (evt, side) => {
         const selectedDay = evt.target.textContent;
         const selectedMonth = !side || side === 'L' ? month : sanitizeMonth(month+1);
         const selectedYear = !side || side === 'L' ? year : month === 12 ? year + 1 : year;
-        const selectedDate = new Date(`${selectedMonth} ${selectedDay}, ${selectedYear}`).getTime();
+        const selectedDate = getDate(selectedDay, selectedMonth, selectedYear);
+
         if (!startDate) {
             setStartDate(selectedDate);
-            setStartRef(evt.target);
-            evt.target.className = 'selectedDate';
         } else if (startDate === selectedDate) {
-            startRef.className = 'null';
-            if (endRef) endRef.className = 'null';
             setStartDate(null);
-            setStartRef(null);
             setEndDate(null);
-            setEndRef(null);
         } else if (selectedDate < startDate) {
             setStartDate(selectedDate);
-            startRef.className = 'null';
-            setStartRef(evt.target);
-            evt.target.className = 'selectedDate';
         } else if (startDate < selectedDate) {
-            if (endRef) endRef.className = 'null';
             setEndDate(selectedDate);
-            setEndRef(evt.target);
-            evt.target.className = 'selectedDate';
         };
     };
 
@@ -79,12 +67,12 @@ const CalendarView = () => {
             {
                 windowDimensions.width > 836 ? 
                 <div id='calendarContainerInner'>
-                    <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
-                    <Calendar selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
+                    <Calendar startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
+                    <Calendar startDate={startDate} endDate={endDate} selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
                 </div> 
                 : 
                 <div id='calendarContainerInner'>
-                        <Calendar selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
+                    <Calendar startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
         </>
