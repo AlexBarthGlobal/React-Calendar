@@ -5,14 +5,12 @@
 }
 
 body {
-  /* margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  /* height: 100vh; */
   min-height: 100vh;
 }
 
@@ -45,7 +43,6 @@ p {
 
 #calendarContainer {
   width: 808px;
-  /* height: 518px; */
   height: 504px;
   margin-top: 52px;
   border-radius: 2.7rem;
@@ -88,7 +85,6 @@ p {
 }
 
 .calendar {
-  /* border: 1px solid rgba(0, 0, 0, 0.575); */
   width: 326px;
   display: flex;
   flex-direction: column;
@@ -179,8 +175,6 @@ td > div {
   background: rgba(0, 0, 0, 0.12);
   border-top-right-radius: 50%;
   border-bottom-right-radius: 50%;
-  /* border: 0px;
-  padding: 0px; */
 }
 
 .changeMonth {

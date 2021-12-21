@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import monthInfo from './monthInfo';
 import generateDays from './generateDays'
 import {ReactComponent as ArrowLeft} from './icons/ArrowLeft.svg'
 import {ReactComponent as ArrowRight} from './icons/ArrowRight.svg'
 
 const Calendar = (props) => {
-    // useMemo for generateDays, don't need to load that on each re-render
     return (
         <div className='calendar'>
             <div className='calendarHead'>
