@@ -25,7 +25,9 @@ svg {
   cursor: pointer;
 }
 
-
+p {
+  padding-bottom: 2px;
+}
 
 .App {
   display: flex;
@@ -37,11 +39,32 @@ svg {
   border: black 1px solid;
   width: 808px;
   /* height: 518px; */
-  height: 380px;
-  margin-top: 130px;
+  height: 504px;
+  margin-top: 70px;
   border-radius: 2.7rem;
   display: flex;
   justify-content: center;
+}
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+#calendarHeader {
+  border: 1px solid black;
+  border-radius: 2.7rem;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.dateDisplayField {
+  height: 44px;
+  width: 140px;
+  text-align: center; 
 }
 
 #calendarContainerInner {
@@ -160,8 +183,8 @@ td > div {
   #calendarContainer {
     border: black 1px solid;
     width: 418px;
-    height: 380px;
-    margin-top: 130px;
+    height: 504px;
+    margin-top: 70px;
     border-radius: 2.7rem;
     display: flex;
     justify-content: center;

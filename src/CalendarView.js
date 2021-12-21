@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Calendar from './Calendar'
 import getDate from './getDate'
+import CalendarHeader from './CalendarHeader'
 
 const CalendarView = () => {
     const todayDate = new Date();
@@ -79,7 +80,8 @@ const CalendarView = () => {
 
     return (
         // use UseContext so I don't pass in the same props over and over again
-        <>
+        <div id='mainContainer'>
+            <CalendarHeader startDate={startDate} endDate={endDate}/>
             {
                 windowDimensions.width > 836 ? 
                 <div id='calendarContainerInner'>
@@ -91,7 +93,7 @@ const CalendarView = () => {
                     <Calendar hoverDate={hoverDate} setTheHoverDate={setTheHoverDate} todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
-        </>
+        </div>
     )  
 }
 
