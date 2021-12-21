@@ -17,6 +17,7 @@ const CalendarView = () => {
     }
     const calendarMax = getCalendarMax();
     const todayTime = getDate(todayDay, todayMonth, todayYear);
+    const [hoverDate, setHoverDate] = useState(null);
 
     const selectDate = (evt, side) => {
         if (evt.target.className === 'inactive') return;
@@ -35,6 +36,11 @@ const CalendarView = () => {
         } else if (startDate < selectedDate) {
             setEndDate(selectedDate);
         };
+    };
+
+    const setTheHoverDate = (evt, currHoverDate) => {
+        if (evt.target.className === 'inactive') setHoverDate(null);
+        else setHoverDate(currHoverDate);
     };
 
     const incrementMonth = () => {
@@ -77,12 +83,12 @@ const CalendarView = () => {
             {
                 windowDimensions.width > 836 ? 
                 <div id='calendarContainerInner'>
-                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
-                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
+                    <Calendar hoverDate={hoverDate} setTheHoverDate={setTheHoverDate} todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'L'} />
+                    <Calendar hoverDate={hoverDate} setTheHoverDate={setTheHoverDate} todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={sanitizeMonth(month + 1)} year={month === 12 ? year + 1 : year} incrementMonth={incrementMonth} decrementMonth={decrementMonth} side={'R'} />
                 </div> 
                 : 
                 <div id='calendarContainerInner'>
-                    <Calendar todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
+                    <Calendar hoverDate={hoverDate} setTheHoverDate={setTheHoverDate} todayTime={todayTime} calendarMax={calendarMax} startDate={startDate} endDate={endDate} selectDate={selectDate} month={month} year={year} incrementMonth={incrementMonth} decrementMonth={decrementMonth}/>
                 </div>
             }
         </>

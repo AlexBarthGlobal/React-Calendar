@@ -1,10 +1,22 @@
-const setClass = (currDate, startDate, endDate, todayTime, calendarMax) => {
+const setClass = (currDate, startDate, endDate, todayTime, calendarMax, hoverDate) => {
     if (currDate < todayTime || currDate > calendarMax) return ['inactive']
     if (currDate === startDate) {
-        if (!endDate) return ['selectedDate'];
+        if (!endDate && (!hoverDate || hoverDate === startDate)) return ['selectedDate'];
+        else if (hoverDate && hoverDate < startDate && !endDate) return ['selectedDate']
         else return ['selectedDate', 'startDateBackground']
-    } else if (currDate === endDate) return ['selectedDate', 'endDateBackground']
-    else if (endDate && startDate < currDate && currDate < endDate) return ['betweenDate'];
+    } else if (currDate === endDate || startDate && !endDate && currDate === hoverDate) {
+        if (hoverDate > startDate || currDate === endDate) return ['selectedDate', 'endDateBackground']
+        else return ['selectedDate']
+    } else if (startDate && hoverDate && startDate < currDate && currDate < hoverDate) {
+        if (endDate && currDate > endDate) {
+            if (currDate === hoverDate) return ['hoverDate'];
+            else return [];
+        } else return ['betweenDate']
+    }
+    else if (startDate < currDate && currDate < endDate) {
+        if (currDate === hoverDate) return ['hoverDate', 'betweenDate']
+        else return ['betweenDate'];
+    } else if (currDate === hoverDate) return ['hoverDate']
     else return [];
 };
 
