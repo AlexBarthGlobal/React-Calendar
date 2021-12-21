@@ -8,12 +8,12 @@ const CalendarHeader = (props) => {
     return (
         <div id='calendarHeader'>
             <div className='dateDisplayField'>
-                <p>Arrive</p>
-                <p>{startDate ? `${monthInfo[startDate.getMonth()+1][0]} ${startDate.getDate()}` : 'Select a date'}</p>
+                <p>Arrival</p>
+                <p><strong>{startDate ? `${monthInfo[startDate.getMonth()+1][0].slice(0,3)} ${startDate.getDate()}` : 'Select a date'}</strong></p>
             </div>
             <div className='dateDisplayField'>
-                <p>Depart</p>
-                <p>{endDate ? `${monthInfo[endDate.getMonth()+1][0]} ${endDate.getDate()}` : 'Select a date'}</p>
+                <p>Departure</p>
+                <p><strong>{endDate ? `${monthInfo[endDate.getMonth()+1][0].slice(0,3)} ${endDate.getDate()}` : 'Select a date'}</strong></p>
             </div>
         </div>
     )
